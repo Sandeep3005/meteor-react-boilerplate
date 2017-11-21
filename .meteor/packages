@@ -21,3 +21,5 @@ accounts-base
 accounts-password
 session
 fourseven:scss
+email
+meteorhacks:ssr

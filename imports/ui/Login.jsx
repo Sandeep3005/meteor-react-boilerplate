@@ -19,10 +19,12 @@ export default class Login extends React.Component {
       if (err) {
         this.setState({error: 'Unable to login. Check email and password.'});
       } else {
+        Meteor.call('sendMail', email);
         this.setState({error: ''});
       }
     });
   }
+
   render() {
     return (
       <div className="boxed-view">
