@@ -19,7 +19,9 @@ export default class Login extends React.Component {
       if (err) {
         this.setState({error: 'Unable to login. Check email and password.'});
       } else {
-        Meteor.call('sendMail', email);
+        Meteor.call('sendMail', email, (err, res) => {
+          console.log(err, res);
+        });
         this.setState({error: ''});
       }
     });

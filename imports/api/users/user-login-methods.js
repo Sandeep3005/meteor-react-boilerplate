@@ -1,8 +1,20 @@
 import { Meteor } from 'meteor/meteor';
+import SimpleSchema from 'simpl-schema';
 import moment from 'moment';
+import _ from 'underscore';
+
+
+const emailSchema = new SimpleSchema({
+  email: {
+    type: String,
+    label: 'Your email',
+    regEx: SimpleSchema.RegEx.Email
+  }
+});
 
 Meteor.methods({
   sendMail(email) {
+    emailSchema.validate({ email });
     SSR.compileTemplate('htmlEmail', Assets.getText('user-login.html'));
     const emailData = {
       email: email,
@@ -16,6 +28,7 @@ Meteor.methods({
     });
   }
 });
+
 
 
 
